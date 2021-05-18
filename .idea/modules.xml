@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EarliestMomentEveryoneBecomesFriends/EarliestMomentEveryoneBecomesFriends.iml" filepath="$PROJECT_DIR$/EarliestMomentEveryoneBecomesFriends/EarliestMomentEveryoneBecomesFriends.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LargestItemAssociation/LargestItemAssociation.iml" filepath="$PROJECT_DIR$/LargestItemAssociation/LargestItemAssociation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/union-find.iml" filepath="$PROJECT_DIR$/.idea/union-find.iml" />
+    </modules>
+  </component>
+</project>
