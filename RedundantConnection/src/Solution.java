@@ -12,7 +12,7 @@
 class Solution {
     public static void main(String[] args) {
         int [][] e = {{1,4},{3,4},{1,3},{1,2},{4,5}};
-        int [] res = new Solution().findRedundantConnection(e);
+        int [] res = new Solution().findRedundantConnection2(e);
         System.out.println(res[0] + ", " + res[1]);
     }
     public int[] findRedundantConnection(int[][] edges) {
@@ -45,6 +45,53 @@ class Solution {
             return x;
         }
         roots[x] = find(roots, roots[x]);
+        return roots[x];
+    }
+
+    // Union Find
+    // Create an array and initialize with -1, roots[i] represent the weight or rank of node i. If roots[i] == -2, i node is the root of 2 nodes.
+    // Iterate edges, call find function to find root for both vertices
+    // If they are different, merge roots[root2] to root1
+    // Else, that means they are already connected so it's a redundant edge. Add both vertices to result
+    // Return the result after the iteration
+    // Time: O(n), Space: O(n)
+    public int[] findRedundantConnection2(int[][] edges) {
+        int n = edges.length;
+        int [] roots = new int[n+1];
+        for(int i = 0; i < roots.length; i++) {
+            roots[i] = -1;
+        }
+
+        int [] res = new int[2];
+        for(int [] edge : edges) {
+            int v1 = edge[0];
+            int v2 = edge[1];
+            int root1 = find2(roots, v1);
+            int root2 = find2(roots, v2);
+
+            if(root1 != root2) {
+                if(roots[root1] <= roots[root2]) {
+                    roots[root1] = roots[root1] + roots[root2];
+                    roots[root2] = root1;
+                }
+                else {
+                    roots[root2] = roots[root1] + roots[root2];
+                    roots[root1] = root2;
+                }
+            }
+            else {
+                res[0] = v1;
+                res[1] = v2;
+            }
+        }
+        return res;
+    }
+
+    private int find2(int [] roots, int x) {
+        if(roots[x] < 0) {
+            return x;
+        }
+        roots[x] = find2(roots, roots[x]);
         return roots[x];
     }
 }
