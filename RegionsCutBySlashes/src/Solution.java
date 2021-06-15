@@ -77,7 +77,8 @@ class Solution {
         return roots[n];
     }
 
-    // Use find() to get the root of x and y! Great union function.
+    // Use find() to get the root of x and y!
+    // Equals to int r1 = find(x); int r2 = find(y); roots[r2] = r1;
     private void union(int x, int y) {
         roots[find(x)] = find(y);
     }
