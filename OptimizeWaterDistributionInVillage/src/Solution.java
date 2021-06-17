@@ -14,6 +14,11 @@ import java.util.PriorityQueue;
 // Return the final result
 // Time: O((M + N)log(M + N) while M is the length of pipes, N is the number of houses. Space: O(M + N) for the heap
 class Solution {
+    public static void main(String[] args) {
+        int [] wells = {1, 2, 2};
+        int [][] pipes = {{1,2,1},{2,3,1}};
+        System.out.println(new Solution().minCostToSupplyWater(3, wells, pipes));
+    }
     int [] roots;
     int [] weight;
     public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {
@@ -40,11 +45,17 @@ class Solution {
             minHeap.offer(pipe);
         }
 
+        int count = 0;
         int cost = 0;
         while(!minHeap.isEmpty()) {
             int [] cur = minHeap.poll();
             if(union(cur[0], cur[1])) {
                 cost += cur[2];
+                count++;
+                // Optional: Since this is a minimum spanning tree. If we do n times union (n + 1 virtual house) then we can stop
+                if(count == n) {
+                    break;
+                }
             }
         }
         return cost;
